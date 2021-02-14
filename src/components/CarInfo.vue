@@ -1,30 +1,28 @@
 <template>
-  <div class="car-info" v-on:click="clickHandler">
+  <div class="car-info" v-on:click="sendMessageToParent">
     <h1>
-      This car is a {{ make }} {{ mutatedModel }}, 
+      This car is a {{ make }} {{ model }}, 
       made in {{ year }}, 
-      owned by {{ ownerName }}
+      owned by {{ ownerName }}.
     </h1>
+    <em v-if="onSale">This car is on sale</em>
   </div>
 </template>
 
 <script>
 export default {
   name: 'CarInfo',
-  props: [
-    'make',
-    'model',
-    'year',
-    'ownerName',
-  ],
-  data() {
-      return {
-          mutatedModel: this.model,
-      }
+  props: {
+    id: Number,
+    make: String,
+    model: String,
+    year: Number,
+    ownerName: String,
+    onSale: Boolean,
   },
   methods: {
-    clickHandler() {
-        this.mutatedModel = "Model S"
+    sendMessageToParent() {
+        this.$emit('custom-event-name', this.id)
     }
   },
 }
