@@ -11,12 +11,12 @@
 <script>
 export default {
   name: 'CarInfo',
-  props: {
-    make: String,
-    model: String,
-    year: String,
-    ownerName: String,
-  },
+  props: [
+    'make',
+    'model',
+    'year',
+    'ownerName',
+  ],
   data() {
       return {
           mutatedModel: this.model,
